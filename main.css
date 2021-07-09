@@ -77,3 +77,22 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+  .wrappers{
+    padding: 15px 5px;
+    transition: all ease 0.5s;
+
+  }
+
+  .wrappers:hover{
+    transition: all ease 0.5s;
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    padding: 15px 5px;
+  }
+
+  .active{
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
+    padding: 15px 5px;
+  }
