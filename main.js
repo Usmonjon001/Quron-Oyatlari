@@ -1,6 +1,15 @@
 searchByNumber.onkeyup = async(event) =>{
+    
     console.log(event)
     if(event.keyCode == 13){
+        
+
+        if(!(searchByNumber.value > 0 && searchByNumber.value < 114)){
+            alert('Input Kiritishda Xatolik Bor')
+            console.log('asd');
+        }
+
+
         let response = await fetch(`https://api.quran.sutanlab.id/surah/${searchByNumber.value}`)
         let surah = await response.json()
         let translationRes = await fetch(`https://quranenc.com/api/translation/sura/uzbek_mansour/${searchByNumber.value}`)
@@ -16,13 +25,7 @@ searchByNumber.onkeyup = async(event) =>{
         intro.style.marginBottom = '45px'
         
 
-        let btn = document.createElement('button')
-        btn.setAttribute('id', 'play')
-        btn.style.width = '100%'
-        btn.style.padding = '15px'
-        btn.style.marginTop = '25px'
-        btn.textContent = 'Play/Puuse';
-        container.append(btn)
+        
 
 
         for(i=0; i< verses.length; i++){
@@ -66,17 +69,42 @@ searchByNumber.onkeyup = async(event) =>{
                 audio.append(source)
                 audioWrapper.append(audio)
 
+                btnPause.onclick = () => {
+                    audio.pause()
+                }
+                play.onclick = () =>{
+                    // audioWrapper.innerHTML = null
+                    // index = -1
+                    // audioWrapper.append(audio)
+                    // console.log('hello world!');
+                    // audio.play()
+                    audio.play()
+                    audio.onended = () =>{
+                        if(index < verses.length-1){
+                            console.log('hello');
+                            return readQuranAyats(index + 1);
+                        } else if(index == verses.length){
+                            console.log('Tuagodi')
+                            return index = -1
+                        }
+                    }
+                }
+
                 audio.play()
                 audio.onended = () =>{
-                    if(index < verses.length){
+                    
+                    if(index < verses.length-1){
+                        console.log('hi');
                         return readQuranAyats(index + 1);
+                    } 
+                    if(index <= verses.length -1){
+                        return index = -1
                     }
                 }
             }
             play.onclick = () =>{
                 readQuranAyats(index)
             }
-
         }
         console.log(surah);
     }

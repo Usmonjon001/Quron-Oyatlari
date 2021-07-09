@@ -96,3 +96,27 @@ table {
     color: white;
     padding: 15px 5px;
   }
+
+
+  #play, #btnPause{
+      width: 100%;
+      display: block;
+      padding: 15px;
+      border-radius: 3px;
+      background-color: blue;
+      color: #fff;
+      font-weight: bolder;
+      outline: none;
+      border: 2px solid transparent;
+      margin-top: 25px;
+      transition: all ease 0.5s;
+  }
+
+  #play:hover, #btnPause:hover{
+      background-color: #fff;
+      color: blue;
+      transition: all ease 0.5s;
+      border: 2px solid blue;
+
+
+  }
